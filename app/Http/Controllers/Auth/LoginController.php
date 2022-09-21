@@ -30,4 +30,10 @@ class LoginController extends Controller
 
         throw new AuthenticationException();
     }
+
+    public function logout(): JsonResponse
+    {
+        $this->auth->guard()->logout();
+        return response()->json();
+    }
 }
