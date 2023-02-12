@@ -9,20 +9,20 @@ class Profile
     private function __construct(
         public readonly null|int $id,
         private string $name,
-        public readonly SexType $sex,
-        private string $phone,
-        private null|string $comment
+        public readonly SexType $sexType,
+        private int $phone,
+        private null|string $comment,
     ) {
     }
 
-    #[Pure] public static function create(string $name, SexType $sex, string $phone, null|string $comment): Profile
+    #[Pure] public static function create(string $name, SexType $sexType, int $phone, null|string $comment): Profile
     {
-        return new Profile(null, $name, $sex, $phone, $comment);
+        return new Profile(null, $name, $sexType, $phone, $comment);
     }
 
-    #[Pure] public static function recreate(int $id, string $name, SexType $sex, string $phone, null|string $comment): Profile
+    #[Pure] public static function recreate(int $id, string $name, SexType $sexType, int $phone, null|string $comment): Profile
     {
-        return new Profile($id,$name, $sex, $phone, $comment);
+        return new Profile($id, $name, $sexType, $phone, $comment);
     }
 
     #[Pure] public function getName()
