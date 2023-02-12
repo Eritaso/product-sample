@@ -10,19 +10,19 @@ class Profile
         public readonly null|int $id,
         private string $name,
         public readonly SexType $sexType,
-        private int $phone,
+        private int $tel,
         private null|string $comment,
     ) {
     }
 
-    #[Pure] public static function create(string $name, SexType $sexType, int $phone, null|string $comment): Profile
+    #[Pure] public static function create(string $name, SexType $sexType, int $tel, null|string $comment): Profile
     {
-        return new Profile(null, $name, $sexType, $phone, $comment);
+        return new Profile(null, $name, $sexType, $tel, $comment);
     }
 
-    #[Pure] public static function recreate(int $id, string $name, SexType $sexType, int $phone, null|string $comment): Profile
+    #[Pure] public static function recreate(int $id, string $name, SexType $sexType, int $tel, null|string $comment): Profile
     {
-        return new Profile($id, $name, $sexType, $phone, $comment);
+        return new Profile($id, $name, $sexType, $tel, $comment);
     }
 
     #[Pure] public function getName()
@@ -30,9 +30,9 @@ class Profile
         return $this->name;
     }
 
-    #[Pure] public function getPhone()
+    #[Pure] public function getTel()
     {
-        return $this->phone;
+        return $this->tel;
     }
 
     #[Pure] public function getComment()

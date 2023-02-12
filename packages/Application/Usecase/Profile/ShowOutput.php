@@ -2,15 +2,13 @@
 
 namespace Packages\Application\Usecase\Profile;
 
-use Packages\Domain\Models\SexType;
-
-class ShowListOutput
+class ShowOutput
 {
     public function __construct(
-        public readonly int $id,
+        public readonly int $profileId,
         public readonly string $name,
-        public readonly SexType $sexType,
-        public readonly string $tel,
+        public readonly int $sexType,
+        public readonly int $tel,
         public readonly null|string $comment,
     ) {
     }

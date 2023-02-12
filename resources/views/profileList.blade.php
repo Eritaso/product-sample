@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-lg-0">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body pb-0">
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -34,18 +34,23 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($profileList['profileList'] as $profile)
                                     <tr>
                                         <th scope="row">{{  $profile->id }}</th>
-                                        <td>{{  $profile->getName() }}</td>
+                                        <td>{{  $profile->name }}</td>
                                         <td>{{  $profile->sexType->label() }}</td>
-                                        <td>{{  $profile->getTel() }}</td>
-                                        <td>A{{  $profile->getComment() }}</td>
+                                        <td>{{  $profile->tel }}</td>
+                                        <td>{{  $profile->comment }}</td>
                                         <td><a href="{{ route('profile', $profile->id) }}" class="btn btn-sm btn-primary">編集</a></td>
                                     </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                    </div>
+                    <div class="pagination mt-3 justify-content-center">
+                        {{ $profileList['links'] }}
                     </div>
                 </div>
             </div>

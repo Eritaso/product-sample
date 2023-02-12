@@ -22,4 +22,5 @@ Route::get('/', function () {
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/profile/{id}', [ProfileController::class, 'show']);
+Route::get('/profile', [ProfileController::class, 'index'])->name('profileList');
+Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile');

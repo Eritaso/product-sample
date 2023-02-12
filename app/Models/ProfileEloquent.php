@@ -16,6 +16,6 @@ class ProfileEloquent extends Model
 
     #[Pure] public function toDomain(): Profile
     {
-        return Profile::recreate($this->id, $this->name, SexType::from($this->sexType), $this->phone, $this->comment);
+        return Profile::recreate($this->id, $this->name, SexType::from($this->sexType), $this->tel, $this->comment);
     }
 }
