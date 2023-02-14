@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('profile', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('sexType');
-            $table->string('tel');;
-            $table->string('comment')->nullable();
+        Schema::create('holidays', function (Blueprint $table) {
+            $table->unsignedBigInteger('profile_id');
+            $table->integer('holiday_type');
             $table->timestamps();
+
+            $table->foreign('profile_id')->references('id')->on('profile');
         });
     }
 
@@ -30,6 +29,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profile');
+        Schema::table('holidays', function (Blueprint $table) {
+            $table->dropForeign('holidays_profile_id_foreign');
+        });
+        Schema::dropIfExists('holidays');
     }
 };

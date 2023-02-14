@@ -2,40 +2,60 @@
 
 namespace Packages\Domain\Models;
 
-use JetBrains\PhpStorm\Pure;
+use Illuminate\Support\Collection;
 
 class Profile
 {
     private function __construct(
         public readonly null|int $id,
         private string $name,
-        public readonly SexType $sexType,
-        private int $tel,
+        private SexType $sexType,
+        private string $tel,
+        private Collection $holidays,
         private null|string $comment,
     ) {
     }
 
-    #[Pure] public static function create(string $name, SexType $sexType, int $tel, null|string $comment): Profile
+    public static function create(string $name, SexType $sexType, string $tel, Collection $holidays, null|string $comment): Profile
     {
-        return new Profile(null, $name, $sexType, $tel, $comment);
+        return new Profile(null, $name, $sexType, $tel, $holidays, $comment);
     }
 
-    #[Pure] public static function recreate(int $id, string $name, SexType $sexType, int $tel, null|string $comment): Profile
+    public static function recreate(int $id, string $name, SexType $sexType, string $tel, Collection $holidays, null|string $comment): Profile
     {
-        return new Profile($id, $name, $sexType, $tel, $comment);
+        return new Profile($id, $name, $sexType, $tel, $holidays, $comment);
     }
 
-    #[Pure] public function getName()
+    public function update(string $name, SexType $sexType, string $tel, Collection $holidays, null|string $comment)
+    {
+        $this->name = $name;
+        $this->sexType = $sexType;
+        $this->tel = $tel;
+        $this->holidays = $holidays->map(fn($holiday) => new Holiday(HolidayType::from($holiday)));
+        $this->comment = $comment;
+    }
+
+    public function getName()
     {
         return $this->name;
     }
 
-    #[Pure] public function getTel()
+    public function getSexType()
+    {
+        return $this->sexType;
+    }
+
+    public function getTel()
     {
         return $this->tel;
     }
 
-    #[Pure] public function getComment()
+    public function getHolidays()
+    {
+        return $this->holidays;
+    }
+
+    public function getComment()
     {
         return $this->comment;
     }

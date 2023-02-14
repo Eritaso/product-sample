@@ -31,4 +31,40 @@ class ProfileRepository implements IProfileRepository
     {
         return ProfileEloquent::find($id)?->toDomain();
     }
+
+    public function update(Profile $profile)
+    {
+        $eloquent = ProfileEloquent::find($profile->id);
+        $eloquent->name = $profile->getName();
+        $eloquent->sexType = $profile->getSexType()->value;
+        $eloquent->tel = $profile->getTel();
+        $eloquent->comment = $profile->getComment();
+
+        $eloquent->holidays()->where('profile_id',$profile->id)->delete();
+        $eloquent->holidays()->createMany(
+            $profile->getHolidays()->map(fn($holiday) => [
+                'holiday_type' => $holiday->type->value,
+            ]),
+        );
+
+        $eloquent->save();
+    }
+
+    public function store(Profile $profile)
+    {
+        $eloquent = new ProfileEloquent();
+        $eloquent->name = $profile->getName();
+        $eloquent->sexType = $profile->getSexType()->value;
+        $eloquent->tel = $profile->getTel();
+        $eloquent->comment = $profile->getComment();
+        $eloquent->save();
+
+        $eloquent->holidays()->createMany(
+            $profile->getHolidays()->map(fn($holiday) => [
+                'holiday_type' => $holiday->type->value,
+            ]),
+        );
+
+        return $eloquent->id;
+    }
 }

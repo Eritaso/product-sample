@@ -4,14 +4,12 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProfileEloquentFactory extends Factory
+class HolidayEloquentFactory extends Factory
 {
     public function definition()
     {
         return [
-            'name' => fake()->name(),
-            'sexType' => 0,
-            'tel' => fake()->phoneNumber(),
+            'holiday_type' => fake()->randomElement(['0', '1', '3', '4', '5', '6', '7']),
         ];
     }
 }

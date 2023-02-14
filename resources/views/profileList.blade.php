@@ -10,10 +10,15 @@
 @include('layout.header')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid col-10">
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
     <div class="row">
         <nav id="sidebar" class="mt-4 mb-4 col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <a class="list-group-item" href="#">新規登録</a>
+            <a class="list-group-item" href="{{ route('registerShow')}}">新規登録</a>
             <a class="list-group-item active" href="{{ route('profileList')}}">一覧</a>
         </nav>
         <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
