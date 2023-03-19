@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 //use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\HolidayEloquent;
+use App\Models\ProfileEloquent;
 use App\Models\UserEloquent;
 use Illuminate\Database\Seeder;
 
@@ -16,5 +18,6 @@ class ProductionDatabaseSeeder extends Seeder
     public function run()
     {
         UserEloquent::factory(['id' => 1, 'name' => '古賀 直子'])->create();
+        ProfileEloquent::factory(['id' => 1, 'name' => '笹田 さゆり', 'sexType' => '060-779-9877'])->has(HolidayEloquent::factory()->count(1), 'holidays')->create();
     }
 }
