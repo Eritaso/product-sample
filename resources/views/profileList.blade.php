@@ -155,11 +155,13 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">戻る</button>
+                        @if(isset($profile->id))
                         <form method="post" action="{{ route('delete', $profile->id) }}">
                             @method('delete')
                             @csrf
                             <button type="submit" class="btn btn-danger">削除</button>
                         </form>
+                        @endif
                     </div>
                 </div>
             </div>
