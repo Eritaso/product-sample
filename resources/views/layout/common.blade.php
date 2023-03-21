@@ -2,10 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title')｜nodoame.net</title>
-    <meta name="description" itemprop="description" content="@yield('description')">
-    <meta name="keywords" itemprop="keywords" content="@yield('keywords')">
-    <link href="/css/star/layout.css" rel="stylesheet">
+    <title>@yield('title')</title>
     @yield('pageCss')
 </head>
 <body>

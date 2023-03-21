@@ -1,11 +1,6 @@
 @extends('layout.common')
 
-@section('title', 'プロフィール編集')
-@section('keywords', 'キーワード')
-@section('description', 'インデックスページの説明文')
-@section('pageCss')
-    <link href="/css/star/index.css" rel="stylesheet">
-@endsection
+@section('title', '新規登録')
 
 @include('layout.header')
 
@@ -17,10 +12,7 @@
             </div>
         @endif
         <div class="row">
-            <nav id="sidebar" class="mt-4 mb-4 col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <a class="list-group-item active" href="{{ route('registerShow')}}">新規登録</a>
-                <a class="list-group-item" href="{{ route('profileList')}}">一覧</a>
-            </nav>
+            @include('layout.nav', ['register' => 'active'])
             @if (session('flash_message'))
                 <div class="flash_message bg-success text-center py-3 my-0">
                     {{ session('flash_message') }}
@@ -28,7 +20,7 @@
             @endif
             <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
                 <div class="row">
-                    <div class="col-12 col-xl-8 mb-4 mb-lg-0">
+                    <div class="col-8 mb-4 mb-lg-0">
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -37,10 +29,10 @@
                                         @csrf
                                         <div class="row g-3 align-items-center">
                                             <div class="col-2">
-                                                <label for="inputPassword6" class="col-form-label">名前</label>
+                                                <label for="inputPassword6" class="col-form-label">氏名</label>
                                             </div>
                                             <div class="col-auto col-10 pl-0">
-                                                <input type="text" id="name" name="name" class="form-control" aria-describedby="passwordHelpInline" value="">
+                                                <input type="text" id="name" name="name" class="form-control" aria-describedby="passwordHelpInline" value="{{ old('name') }}">
                                             </div>
                                             @error('name')
                                             <div class="col-2"></div>
@@ -54,11 +46,11 @@
                                                 <label for="inputPassword6" class="col-form-label">性別</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="sexType" id="sexType1" value="0">
+                                                <input class="form-check-input" type="radio" name="sexType" id="sexType1" value="0" @if(old('sexType') == 0) checked @endif>
                                                 <label class="form-check-label" for="sexType1">男</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="sexType" id="sexType2" value="1">
+                                                <input class="form-check-input" type="radio" name="sexType" id="sexType2" value="1" @if(old('sexType') == 1) checked @endif>
                                                 <label class="form-check-label" for="sexType2">女</label>
                                             </div>
                                         </div>
@@ -67,7 +59,7 @@
                                                 <label for="inputPassword6" class="col-form-label">電話番号</label>
                                             </div>
                                             <div class="col-auto col-10 pl-0 pt-2">
-                                                <input type="tel" id="tel" name="tel" class="form-control">
+                                                <input type="tel" id="tel" name="tel" class="form-control" value="{{ old('tel') }}">
                                             </div>
                                             @error('tel')
                                             <div class="col-2"></div>
@@ -83,7 +75,8 @@
                                             <div class="form-check form-check-inline col-7">
                                                 @foreach($holidays as $holiday)
                                                     <div class="col-auto col-2 pl-0 pr-1">
-                                                        <input type="checkbox" name="holidays[]" value="{{ $holiday->value }}">{{ $holiday->label() }}
+                                                        <input type="checkbox" name="holidays[]" value="{{ $holiday->value }}" id="{{ $holiday->value }}" @if(old('holidays'))@foreach(old('holidays') as $oldHoliday) @if($oldHoliday == $holiday->value) checked @endif @endforeach @endif>
+                                                        <label for="{{ $holiday->value }}">{{ $holiday->label() }}</label>
                                                     </div>
                                                 @endforeach
                                             </div>
@@ -101,7 +94,7 @@
                                                 <label for="inputPassword6" class="col-form-label">コメント</label>
                                             </div>
                                             <div class="col-auto col-10 pl-0">
-                                                <input type="text" id="comment" name="comment" class="form-control">
+                                                <input type="text" id="comment" name="comment" class="form-control" value="{{ old('comment') }}">
                                             </div>
                                         </div>
                                         <div class="section1 text-center mt-4">
@@ -116,4 +109,11 @@
             </main>
         </div>
     </div>
+
+    <script>
+        function connecttext( textid, ischecked ) {
+            // チェック状態に合わせて有効・無効を切り替える
+            document.getElementById(textid).disabled = !ischecked;
+        }
+    </script>
 @endsection

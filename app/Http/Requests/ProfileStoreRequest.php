@@ -26,7 +26,7 @@ class ProfileStoreRequest extends FormRequest
         return [
             'name' => 'required|string',
             'sexType' => 'required|in:0,1',
-            'tel' => 'required|string',
+            'tel' => 'required|regex:/^(0{1}\d{1,4}-{0,1}\d{1,4}-{0,1}\d{4})$/|unique:profile',
             'holidays' => 'required|array',
             'comment' => 'nullable|string',
         ];

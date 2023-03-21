@@ -11,7 +11,6 @@ enum HolidayType: int
     case FRIDAY = 4;
     case SATURDAY = 5;
     case SUNDAY = 6;
-    case NOTHING = 7;
 
     public function label(): string
     {
@@ -23,7 +22,6 @@ enum HolidayType: int
             HolidayType::FRIDAY => '金',
             HolidayType::SATURDAY => '土',
             HolidayType::SUNDAY => '日',
-            HolidayType::NOTHING => 'なし',
         };
     }
 }

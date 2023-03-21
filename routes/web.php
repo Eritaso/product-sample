@@ -26,5 +26,6 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/profile/register', [RegisterController::class, 'show'])->name('registerShow');
 Route::post('/profile/register', [RegisterController::class, 'store'])->name('register');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profileList');
+Route::post('/profile', [ProfileController::class, 'index'])->name('profileSearch');
 Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile');
 Route::patch('/profile/{id}', [ProfileController::class, 'update'])->name('update');

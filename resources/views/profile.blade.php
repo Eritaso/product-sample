@@ -1,11 +1,6 @@
 @extends('layout.common')
 
 @section('title', 'プロフィール編集')
-@section('keywords', 'キーワード')
-@section('description', 'インデックスページの説明文')
-@section('pageCss')
-    <link href="/css/star/index.css" rel="stylesheet">
-@endsection
 
 @include('layout.header')
 
@@ -17,10 +12,7 @@
         </div>
     @endif
     <div class="row">
-        <nav id="sidebar" class="mt-4 mb-4 col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <a class="list-group-item" href="{{ route('registerShow')}}">新規登録</a>
-            <a class="list-group-item active" href="{{ route('profileList')}}">一覧</a>
-        </nav>
+        @include('layout.nav', ['list' => 'active'])
         @if (session('flash_message'))
             <div class="flash_message bg-success text-center py-3 my-0">
                 {{ session('flash_message') }}
@@ -37,7 +29,7 @@
                                     @csrf
                                     <div class="row g-3 align-items-center">
                                         <div class="col-2">
-                                            <label for="inputPassword6" class="col-form-label">名前</label>
+                                            <label for="inputPassword6" class="col-form-label">氏名</label>
                                         </div>
                                         <div class="col-auto col-10 pl-0">
                                             <input type="text" id="name" name="name" class="form-control" aria-describedby="passwordHelpInline" value="{{$profile->name}}">
@@ -83,13 +75,14 @@
                                         <div class="form-check form-check-inline col-7">
                                             @foreach($holidays as $holiday)
                                             <div class="col-auto col-2 pl-0 pr-1">
-                                                <input type="checkbox" name="holidays[]" value="{{ $holiday->value }}"
+                                                <input type="checkbox" name="holidays[]" value="{{ $holiday->value }}" id="{{ $holiday->value }}"
                                                     @foreach($profile->holidays as $displayHoliday)
                                                         @if($displayHoliday->type->value == $holiday->value)
                                                             checked
                                                         @endif
                                                     @endforeach
-                                                >{{ $holiday->label() }}
+                                                >
+                                                <label for="{{ $holiday->value }}">{{ $holiday->label() }}</label>
                                             </div>
                                             @endforeach
                                         </div>

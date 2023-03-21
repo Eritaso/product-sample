@@ -13,9 +13,11 @@ class ProfileController extends Controller
 {
     public function index(ShowListUsecase $usecase, Request $request)
     {
-        $profileList = $usecase->__invoke($request->input('name'), $request->input('sexType'), $request->input('tel'));
+        $profileList = $usecase->__invoke($request->input('name'), $request->input('sexType'), $request->input('tel'), $request->input('holidays'));
+        $holidays = HolidayType::cases();
+        $request = $request->all();
 
-        return view('profileList', compact('profileList'));
+        return view('profileList', compact('profileList', 'holidays', 'request'));
     }
 
     public function show(int $id, ShowUsecase $usecase)

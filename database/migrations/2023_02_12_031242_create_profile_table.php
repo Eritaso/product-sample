@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('sexType');
-            $table->string('tel');;
+            $table->string('tel')->unique();
             $table->string('comment')->nullable();
             $table->timestamps();
         });
