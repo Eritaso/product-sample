@@ -73,4 +73,11 @@ class ProfileRepository implements IProfileRepository
 
         return $eloquent->id;
     }
+
+    public function delete(Profile $profile)
+    {
+        $eloquent = ProfileEloquent::find($profile->id);
+        $eloquent->holidays()->where('profile_id',$profile->id)->delete();
+        $eloquent->delete();
+    }
 }

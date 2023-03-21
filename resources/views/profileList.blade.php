@@ -87,6 +87,7 @@
             </div>
         </form>
     </div>
+    <div align="right">{{ $profileList['count'] }}件 / {{ $profileList['total'] }}件</div>
     <div class="row">
         <nav id="sidebar" class="mt-4 mb-4 col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
             <a class="list-group-item mt-4" href="{{ route('registerShow')}}">新規登録</a>
@@ -125,7 +126,7 @@
                                         <td>{{  $profile->comment }}</td>
                                         <td>
                                             <a href="{{ route('profile', $profile->id) }}" class="btn btn-sm btn-primary">編集</a>
-                                            <a href="{{ route('profile', $profile->id) }}" class="btn btn-sm btn-danger">削除</a>
+                                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal">削除</button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -140,6 +141,29 @@
                 </div>
             </div>
         </main>
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="label1"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        本当に削除しますか？
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">戻る</button>
+                        <form method="post" action="{{ route('delete', $profile->id) }}">
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-danger">削除</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

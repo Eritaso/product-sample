@@ -2,7 +2,6 @@
 
 namespace Packages\Application\Usecase\Profile;
 
-use Packages\Domain\Models\Holiday;
 use Packages\Domain\Models\IProfileRepository;
 use Packages\Domain\Models\Profile;
 

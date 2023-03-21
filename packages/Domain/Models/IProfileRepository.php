@@ -13,4 +13,6 @@ interface IProfileRepository
     public function update(Profile $profile);
 
     public function store(Profile $profile);
+
+    public function delete(Profile $profile);
 }

@@ -29,3 +29,4 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profileList')
 Route::post('/profile', [ProfileController::class, 'index'])->name('profileSearch');
 Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile');
 Route::patch('/profile/{id}', [ProfileController::class, 'update'])->name('update');
+Route::delete('/profile/{id}', [ProfileController::class, 'delete'])->name('delete');

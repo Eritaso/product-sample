@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileStoreRequest;
 use Illuminate\Http\Request;
+use Packages\Application\Usecase\Profile\DeleteUsecase;
 use Packages\Application\Usecase\Profile\ShowListUsecase;
 use Packages\Application\Usecase\Profile\ShowUsecase;
 use Packages\Application\Usecase\Profile\UpadateUsecase;
@@ -33,5 +34,12 @@ class ProfileController extends Controller
         $usecase->__invoke($id, $request->name, $request->sexType, $request->tel, collect($request->holidays), $request->comment ?? '');
 
         return redirect()->back()->with('message', '更新しました。');
+    }
+
+    public function delete(int $id, DeleteUsecase $usecase)
+    {
+        $usecase->__invoke($id);
+
+        return redirect()->back()->with('message', '削除しました。');
     }
 }
