@@ -106,6 +106,7 @@
                                     <div class="section1 text-center mt-4">
                                         <button type="submit" class="btn btn-primary">登録</button>
                                     </div>
+                                    <input type="hidden" id="profileId" name="profileId" value="{{ $profile->profileId }}" />
                                 </form>
                             </div>
                         </div>
