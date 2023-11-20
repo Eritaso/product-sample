@@ -23,4 +23,8 @@ make test-feature
 make test-integration
 ```
 
+＃＃ ローカル
 http://localhost/
+
+## 検品
+https://github.com/Eritaso/product-sample
