@@ -23,7 +23,7 @@ make test-feature
 make test-integration
 ```
 
-＃＃ ローカル
+## ローカル
 http://localhost/
 
 ## 検品
